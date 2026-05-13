@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Backup files
+*.bak
+*.bak.*
+
+# Temporary conversion script (used during build, not shipped)
+convert_modes.py
+
+
+# Superpowers documentation (working files)
+docs/superpowers
