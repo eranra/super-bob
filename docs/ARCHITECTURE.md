@@ -492,6 +492,74 @@ graph TD
 
 ---
 
+## Model Selection Guidance
+
+**Optimize costs while maintaining quality by choosing the right model for each task**
+
+### Expensive Models (GPT-4, Claude Opus, Claude Sonnet)
+
+Use for tasks requiring deep reasoning and architectural decisions:
+
+- **Architectural decisions** - System design, technology choices, trade-off analysis
+- **Security reviews** - Vulnerability assessment, threat modeling, security patterns
+- **Complex debugging** - Multi-layer issues, race conditions, subtle bugs
+- **Design refinement** - API design, data modeling, interface contracts
+- **Code review** - Thorough review of complex implementations
+- **Planning** - Breaking down large features, creating implementation strategies
+
+**Why expensive models:** These tasks require understanding context, making judgment calls, and reasoning about trade-offs.
+
+### Cheap Models (GPT-3.5, Claude Haiku)
+
+Use for well-defined tasks with clear success criteria:
+
+- **Executing plans** - Following detailed implementation steps
+- **Implementing specs** - Writing code from complete specifications
+- **Running tests** - Executing test suites and reporting results
+- **Simple refactoring** - Renaming, extracting functions, formatting
+- **Documentation updates** - Writing docs from clear outlines
+- **Verification tasks** - Running commands and checking output
+
+**Why cheap models:** These tasks have clear instructions and don't require complex reasoning.
+
+### Cost Optimization Strategy
+
+**1. Use expensive models for planning, cheap models for execution:**
+```
+Expensive: brainstorming → writing-plans
+Cheap: executing-plans → test-driven-development (following plan)
+```
+
+**2. Use expensive models for review, cheap models for fixes:**
+```
+Cheap: Implement feature following spec
+Expensive: requesting-code-review (find issues)
+Cheap: Fix specific issues identified in review
+```
+
+**3. Use expensive models for debugging, cheap models for implementation:**
+```
+Expensive: systematic-debugging (find root cause)
+Cheap: test-driven-development (implement fix)
+```
+
+### Model Selection by Mode
+
+| Mode | Recommended Model | Rationale |
+|------|------------------|-----------|
+| brainstorming | Expensive | Requires design thinking |
+| writing-plans | Expensive | Requires breaking down complexity |
+| executing-plans | Cheap | Following detailed instructions |
+| test-driven-development | Cheap | Implementing clear specs |
+| systematic-debugging | Expensive | Requires investigation |
+| requesting-code-review | Expensive | Requires judgment |
+| receiving-code-review | Cheap | Implementing specific fixes |
+| verification-before-completion | Cheap | Running commands |
+
+**Rule of thumb:** If the task requires "figuring out what to do," use expensive. If it's "doing what's already figured out," use cheap.
+
+---
+
 ## Technical Details
 
 ### Mode Definition Format
