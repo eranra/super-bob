@@ -72,11 +72,17 @@ if [[ -f "$MODES_DEST" ]]; then
   
   # Check if Python is available for YAML validation
   if command -v python3 &> /dev/null; then
-    if python3 -c "import yaml; yaml.safe_load(open('$MODES_DEST'))" 2>/dev/null; then
-      echo "  ✓ YAML syntax is valid"
+    # Check if PyYAML is installed
+    if python3 -c "import yaml" 2>/dev/null; then
+      if python3 -c "import yaml; yaml.safe_load(open('$MODES_DEST'))" 2>/dev/null; then
+        echo "  ✓ YAML syntax is valid"
+      else
+        echo "  ✗ YAML syntax validation failed"
+        VERIFICATION_PASSED=false
+      fi
     else
-      echo "  ✗ YAML syntax validation failed"
-      VERIFICATION_PASSED=false
+      echo "  ⚠ PyYAML not installed, skipping YAML validation"
+      echo "    (Install with: pip3 install pyyaml)"
     fi
   else
     echo "  ⚠ Python3 not found, skipping YAML validation"
