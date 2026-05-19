@@ -6,8 +6,24 @@ BOB_SETTINGS="$HOME/.bob/settings"
 BOB_COMMANDS="$HOME/.bob/commands"
 BOB_RULES="$HOME/.bob/settings/rules"
 DRY_RUN=false
+UPDATE_MODE=false
 
-[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+# Parse command line arguments
+for arg in "$@"; do
+  case "$arg" in
+    --dry-run)
+      DRY_RUN=true
+      ;;
+    --update)
+      UPDATE_MODE=true
+      ;;
+    *)
+      echo "Unknown option: $arg"
+      echo "Usage: $0 [--dry-run] [--update]"
+      exit 1
+      ;;
+  esac
+done
 
 run() {
   if $DRY_RUN; then echo "[dry-run] $*"; else "$@"; fi
@@ -43,10 +59,14 @@ shopt -s nullglob
 for cmd in "$SCRIPT_DIR/commands/"*.md; do
   fname="$(basename "$cmd")"
   dest="$BOB_COMMANDS/$fname"
-  if [[ -f "$dest" ]]; then
+  if [[ -f "$dest" ]] && ! $UPDATE_MODE; then
     echo "  ! Skipping $fname (already exists — remove manually to reinstall)"
   else
-    echo "  + $fname"
+    if [[ -f "$dest" ]] && $UPDATE_MODE; then
+      echo "  ↻ Updating $fname"
+    else
+      echo "  + $fname"
+    fi
     run cp "$cmd" "$dest"
   fi
 done
