@@ -26,6 +26,17 @@ To preview what the script will do without making changes:
 ./install.sh --dry-run
 ```
 
+To update to the latest version (overwrites existing files):
+
+```bash
+./install.sh --update
+```
+
+**Note:** The `--update` flag will:
+- Overwrite `custom_modes.yaml` (creates backup with timestamp)
+- Update all slash commands in `~/.bob/commands/`
+- Update workspace rules in `~/.bob/settings/rules/`
+
 ### What gets installed
 
 | Source | Destination |
