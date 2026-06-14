@@ -23,6 +23,8 @@ Thumbs.db
 convert_modes.py
 
 
-# Superpowers working files
-docs/superpowers
-docs/plans
+# Temporary Python update scripts (replaced by sync-from-upstream.sh)
+update_modes.py
+update_all_modes.py
+update_tdd_mode.py
+fix_remaining_modes.py
