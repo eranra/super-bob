@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BOB_SETTINGS="$HOME/.bob/settings"
 BOB_COMMANDS="$HOME/.bob/commands"
 BOB_RULES="$HOME/.bob/settings/rules"
+BOB_SKILLS="$HOME/.bob/skills"
 DRY_RUN=false
 UPDATE_MODE=false
 
@@ -78,6 +79,26 @@ run mkdir -p "$BOB_RULES"
 run cp "$SCRIPT_DIR/rules/superbob-workspace.md" "$BOB_RULES/superbob-workspace.md"
 echo "  + superbob-workspace.md"
 
+# 4. skills
+echo ""
+echo "→ Installing skills → $BOB_SKILLS/"
+run mkdir -p "$BOB_SKILLS"
+for skill_dir in "$SCRIPT_DIR/skills/"/*/; do
+  skill_name="$(basename "$skill_dir")"
+  dest_dir="$BOB_SKILLS/$skill_name"
+  if [[ -d "$dest_dir" ]] && ! $UPDATE_MODE; then
+    echo "  ! Skipping $skill_name (already exists — use --update to reinstall)"
+  else
+    if [[ -d "$dest_dir" ]] && $UPDATE_MODE; then
+      echo "  ↻ Updating $skill_name"
+    else
+      echo "  + $skill_name"
+    fi
+    run mkdir -p "$dest_dir"
+    run cp "$skill_dir/SKILL.md" "$dest_dir/SKILL.md"
+  fi
+done
+
 echo ""
 echo "=== Verifying Installation ==="
 
@@ -115,7 +136,22 @@ fi
 # 2. Verify all commands are installed
 echo ""
 echo "→ Checking slash commands..."
-EXPECTED_COMMANDS=("brainstorm.md" "debug.md" "execute-plan.md" "finish.md" "review.md" "tdd.md" "write-plan.md")
+EXPECTED_COMMANDS=(
+  "brainstorm.md"
+  "debug.md"
+  "dispatch.md"
+  "execute-plan.md"
+  "finish.md"
+  "receive-review.md"
+  "review.md"
+  "subagent.md"
+  "superpowers.md"
+  "tdd.md"
+  "verify.md"
+  "worktree.md"
+  "write-plan.md"
+  "write-skill.md"
+)
 COMMANDS_FOUND=0
 
 for cmd in "${EXPECTED_COMMANDS[@]}"; do
@@ -130,7 +166,40 @@ done
 
 echo "  Found $COMMANDS_FOUND of ${#EXPECTED_COMMANDS[@]} commands"
 
-# 3. Verify workspace rules are installed
+# 3. Verify skills are installed
+echo ""
+echo "→ Checking skills..."
+EXPECTED_SKILLS=(
+  "brainstorming"
+  "dispatching-parallel-agents"
+  "executing-plans"
+  "finishing-a-development-branch"
+  "receiving-code-review"
+  "requesting-code-review"
+  "subagent-driven-development"
+  "systematic-debugging"
+  "test-driven-development"
+  "using-git-worktrees"
+  "using-superpowers"
+  "verification-before-completion"
+  "writing-plans"
+  "writing-skills"
+)
+SKILLS_FOUND=0
+
+for skill in "${EXPECTED_SKILLS[@]}"; do
+  if [[ -f "$BOB_SKILLS/$skill/SKILL.md" ]]; then
+    echo "  ✓ $skill"
+    SKILLS_FOUND=$((SKILLS_FOUND + 1))
+  else
+    echo "  ✗ $skill (missing)"
+    VERIFICATION_PASSED=false
+  fi
+done
+
+echo "  Found $SKILLS_FOUND of ${#EXPECTED_SKILLS[@]} skills"
+
+# 4. Verify workspace rules are installed
 echo ""
 echo "→ Checking workspace rules..."
 if [[ -f "$BOB_RULES/superbob-workspace.md" ]]; then
@@ -146,7 +215,7 @@ if $VERIFICATION_PASSED; then
   echo "=== ✓ Installation Verified Successfully ==="
   echo ""
   echo "Next Steps:"
-  echo "  1. Restart IBM Bob to load the new modes"
+  echo "  1. Restart IBM Bob to load the new modes and skills"
   echo "  2. Try: /tdd to start test-driven development"
   echo "  3. Try: /write-plan to create an implementation plan"
   echo "  4. Try: /review to request code review"
