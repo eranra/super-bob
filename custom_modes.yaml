@@ -8,7 +8,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: brainstorming
@@ -20,8 +20,7 @@ customModes:
   groups:
     - read
     - edit
-    - browser
-    - command
+    - execute
     - skill
 
 - slug: test-driven-development
@@ -33,7 +32,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: systematic-debugging
@@ -45,7 +44,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: writing-plans
@@ -57,7 +56,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: executing-plans
@@ -69,7 +68,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: requesting-code-review
@@ -81,7 +80,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: receiving-code-review
@@ -93,7 +92,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: subagent-driven-development
@@ -105,8 +104,9 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
+    - subagent
 
 - slug: dispatching-parallel-agents
   name: Dispatching Parallel Agents
@@ -117,8 +117,9 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
+    - subagent
 
 - slug: using-git-worktrees
   name: Using Git Worktrees
@@ -129,7 +130,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: finishing-a-development-branch
@@ -141,7 +142,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: verification-before-completion
@@ -153,7 +154,7 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill
 
 - slug: writing-skills
@@ -165,5 +166,5 @@ customModes:
   groups:
     - read
     - edit
-    - command
+    - execute
     - skill

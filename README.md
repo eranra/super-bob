@@ -2,8 +2,8 @@
 
 Rigorous development discipline for [IBM Bob](https://bob.ibm.com/docs/ide).
 
-21 skill-modes that enforce test-driven development, systematic debugging, and
-automatic code review for the IBM Bob VS Code extension.
+14 skill-modes that enforce test-driven development, systematic debugging, and
+automatic code review for the IBM Bob IDE.
 
 ---
 
@@ -42,8 +42,9 @@ To update to the latest version (overwrites existing files):
 | Source | Destination |
 |---|---|
 | `custom_modes.yaml` | `~/.bob/settings/custom_modes.yaml` |
-| `commands/*.md` (7 files) | `~/.bob/commands/` |
+| `commands/*.md` (14 files) | `~/.bob/commands/` |
 | `rules/superbob-workspace.md` | `~/.bob/settings/rules/` |
+| `skills/*/SKILL.md` (14 skills) | `~/.bob/skills/` |
 
 ---
 
@@ -212,20 +213,16 @@ Do you have a clear design?
 
 ---
 
-## All 21 Modes
+## All 14 Modes
 
 | Mode | When to use |
 |---|---|
 | `using-superpowers` | Start of any task — select the right skill |
 | `test-driven-development` | Implementing any feature or bugfix |
-| `testing-anti-patterns` | Reviewing or writing tests |
 | `verification-before-completion` | Before claiming work is done |
-| `condition-based-waiting` | Async operations, polling, event-driven flows |
-| `defense-in-depth` | Error handling, validation, security layers |
 | `receiving-code-review` | Processing code review feedback |
 | `requesting-code-review` | Before merging — rigorous review |
 | `systematic-debugging` | Any bug, test failure, unexpected behavior |
-| `root-cause-tracing` | When a bug's origin is unclear |
 | `dispatching-parallel-agents` | 2+ independent tasks that can run concurrently |
 | `brainstorming` | Before any creative work |
 | `writing-plans` | Multi-step tasks, before touching code |
@@ -234,9 +231,6 @@ Do you have a clear design?
 | `using-git-worktrees` | Feature work needing isolation |
 | `finishing-a-development-branch` | Implementation complete, ready to integrate |
 | `writing-skills` | Creating or editing Bob skill/mode definitions |
-| `testing-skills-with-subagents` | Validating a new or modified skill works correctly |
-| `sharing-skills` | Contributing a skill improvement upstream |
-| `code-reviewer` | Structured review of completed work |
 
 ---
 

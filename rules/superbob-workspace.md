@@ -20,7 +20,7 @@ Or use slash commands for quick access:
 - `/execute-plan` - Execute plan with TDD
 - `/review` - Request code review
 
-Or select directly from 21 skill-modes:
+Or select directly from 14 skill-modes:
 - **test-driven-development** - RED-GREEN-REFACTOR cycle
 - **systematic-debugging** - 4-phase root-cause investigation
 - **brainstorming** - Socratic design refinement

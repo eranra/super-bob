@@ -20,9 +20,11 @@ echo ""
 VERBATIM_SKILLS=(
   brainstorming
   dispatching-parallel-agents
+  executing-plans
   finishing-a-development-branch
   receiving-code-review
   requesting-code-review
+  subagent-driven-development
   systematic-debugging
   test-driven-development
   using-git-worktrees
@@ -31,11 +33,8 @@ VERBATIM_SKILLS=(
   writing-skills
 )
 
-# 2 skills with TodoWrite → markdown checklist patch
-PATCHED_SKILLS=(
-  executing-plans
-  subagent-driven-development
-)
+# 0 skills need patching (upstream now uses "todos" language natively)
+PATCHED_SKILLS=()
 
 # 1 skill that is a Bob-specific rewrite — never overwritten by sync
 MANUAL_SKILLS=(
